@@ -4,9 +4,11 @@ document.getElementById("leadForm").addEventListener("submit", async (e) => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-  
+    // قراءة utm_source من العنوان وتحديث source
     const urlParams = new URLSearchParams(window.location.search);
-    data.utm_source = urlParams.get("utm_source") || data.utm_source || "website"; // تأكد من القيمة
+    const utmSource = urlParams.get("utm_source") || "website"; // القيمة الافتراضية لو ما فيش utm_source
+    data.source = utmSource; // حدّث source في البيانات
+    document.getElementById("source").value = utmSource; // حدّث الحقل المخفي
 
     try {
         const response = await fetch("http://localhost:8222/api/leads", {
