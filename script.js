@@ -4,8 +4,9 @@ document.getElementById("leadForm").addEventListener("submit", async (e) => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
+  
     const urlParams = new URLSearchParams(window.location.search);
-    data.utm_source = urlParams.get("utm_source") || "direct";
+    data.utm_source = urlParams.get("utm_source") || data.utm_source || "website"; // تأكد من القيمة
 
     try {
         const response = await fetch("http://localhost:8222/api/leads", {
