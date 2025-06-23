@@ -4,7 +4,6 @@ document.getElementById("leadForm").addEventListener("submit", async (e) => {
     const formData = new FormData(e.target);
     const data = Object.fromEntries(formData);
 
-    // Get utm_source from URL
     const urlParams = new URLSearchParams(window.location.search);
     data.utm_source = urlParams.get("utm_source") || "direct";
 
